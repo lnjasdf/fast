@@ -7,24 +7,21 @@
 </head>
 <body>
 <div id="app">
+
     <el-row>
-        <el-col :span="6"><div class="grid-content bg-purple">
-            <el-form :inline="true">
-                <el-form-item label="管理系统">
-                    <el-input></el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="onSubmit">搜索</el-button>
-                </el-form-item>
-            </el-form>
-        </div></el-col>
-        <el-col :span="18"><div class="grid-content bg-purple-light">
+        <el-col :span="4">
+            管理系统
+        </el-col>
+        <el-col :span="20">
             <el-menu theme="dark" mode="horizontal">
-                <el-menu-item index="1">订单系统</el-menu-item>
-                <el-menu-item index="2">物流系统</el-menu-item>
-                <el-menu-item index="3">运力情况</el-menu-item>
+                <el-menu-item index="1">
+                    <el-input v-model="value2" icon="search" :on-icon-click="onSubmit"></el-input>
+                </el-menu-item>
+                <el-menu-item index="2" style="float: right">订单系统</el-menu-item>
+                <el-menu-item index="3" style="float: right">物流系统</el-menu-item>
+                <el-menu-item index="4" style="float: right">运力情况</el-menu-item>
             </el-menu>
-        </div></el-col>
+        </el-col>
     </el-row>
     <el-button @click="visible = true">按钮</el-button>
     <el-dialog v-model="visible" title="Hello world">
@@ -34,6 +31,12 @@
     <p>{{value1}}</p>
 </div>
 </body>
+<style type="text/css">
+    .el-row, .el-col {
+        padding: 0;
+        margin: 0;
+    }
+</style>
 <!-- 先引入 Vue -->
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <!-- 引入组件库 -->
@@ -45,6 +48,12 @@
             return {
                 visible: false,
                 value1: false,
+                value2: "",
+            }
+        },
+        methods: {
+            onSubmit: function () {
+                this.value1 = this.value2;
             }
         }
     })
